@@ -10,6 +10,39 @@ const canvas = document.querySelector("#myCanvas");
         ctx.clearRect(0, 0, W, H); //erase Canvas
         
 
+        
+
+
+        class Trash {
+            constructor(id,url='',type='glass'){
+                
+                this.id = id;
+                this.url = url;
+                this.type = type; 
+
+            }
+        }
+
+        
+        
+
+        class Contentor {
+
+            constructor(x,y,r,imgUrl='',acceptedTrash = []){
+                
+                this.x = x;
+                this.y = y;
+                this.r = r ;
+                this.imgUrl = imgUrl;
+                this.acceptedTrash = acceptedTrash;
+
+
+            }
+        }
+
+        let ArrayContentor = [
+            new Contentor(470,550,10,'', [1])
+        ]
         class Line {
 
             constructor(xB,yB,xE,yE){
@@ -30,6 +63,11 @@ const canvas = document.querySelector("#myCanvas");
             }
         }
 
+        let ArrayLines = [
+            new Line(100,150,400,150),
+            
+            
+        ]
 
         
         
@@ -49,10 +87,6 @@ const canvas = document.querySelector("#myCanvas");
 
         
 
-        let ArrayLines = [
-            new Line(100,150,400,150),
-            
-        ]
 
         
         function start() {
@@ -77,10 +111,12 @@ const canvas = document.querySelector("#myCanvas");
 
 
 
-        // Posicao 
+        // Posicao  Inicial e Raio do player
         let x = 120;
         let y = 50;
         const R = 10;
+
+
         let rightKey = false;
         let leftKey = false;
         let upKey = false;
@@ -143,8 +179,6 @@ const canvas = document.querySelector("#myCanvas");
                                 x+=1; //UPDATE BALL
                             }
                             
-            
-            
                         if (leftKey)
                             if(CheckNoColision(x - 1, y)){
                                 x-=1; //UPDATE BALL
@@ -155,17 +189,47 @@ const canvas = document.querySelector("#myCanvas");
                                 y-=1; //UPDATE BALL
                             }
 
-
-                
                         if (downKey)
                             if(CheckNoColision(x, y + 1)){
                                 y+=1; //UPDATE BALL
-                                
                             }
-           
+                        
+                       
+                        
+                        
+                        ArrayContentor.forEach(Contentor =>{
+
+                            ctx.fillStyle  = "red";
+                            ctx.beginPath();
+                            ctx.arc(Contentor.x, Contentor.y, Contentor.r , 0, Math.PI * 2, true);
+                            ctx.fill();
+                            CheckNoFinished(x,y,Contentor.x,Contentor.y,Contentor.r,Contentor.acceptedTrash,IdTrash)
+                            
+                        })
+
+
+                        for (const key in ArrayTrashColleted) {
+                            ctx.fillStyle  = "green";
+                           const Tx = 10 
+                           const Ty = 20 * (1 + key)
+                           ctx.beginPath();
+                           ctx.arc(Tx,Ty, 10 , 0, Math.PI * 2, true);
+                           ctx.fill();
+                                
+                            
+                        }
+                        
+
+                        CheckWin(ArrayTrash,ArrayTrashColleted)
+                
+                            //Player Falta substituir arc por idTrash url 
+                            ctx.fillStyle  = "black";
                             ctx.beginPath();
                             ctx.arc(x, y, R, 0, Math.PI * 2, true);
                             ctx.fill();
+
+
+
 
                         //console.log(x1, x)
                         //new frame
@@ -190,3 +254,54 @@ const canvas = document.querySelector("#myCanvas");
                     return true // Retorna true Se nao estiver em colisao
                 }
         }
+
+
+        function CheckNoFinished(xP,yP,xC,yC,radius,Accepted,idLixo) {
+
+
+            
+                if(
+                 (xP <= (xC + radius)) && (xP >= (xC - radius)   ) 
+                 &&
+                 ((yP <= (yC + radius)) && (yP >= (yC - radius)) )
+                 ){
+                    if(ArrayTrashColleted.every(el => el != idLixo)){
+                        
+                        ArrayTrashColleted.push(idLixo)       
+                        IdTrash++
+
+                        console.log(ArrayTrashColleted)
+                        console.log(ArrayTrash)
+
+                        x = 120;
+                        y = 50;
+                        
+                    }
+                    return true
+                 }else{
+                    return false
+                 }
+
+            
+            
+        }   
+        
+        let ArrayTrash = [
+            new Trash(1,'')
+        ]
+        
+        let ArrayTrashColleted = []
+
+        let IdTrash = 1
+        /*
+        @IdTrash = lixo escolhido 
+        */
+
+        function CheckWin(a, b) {
+        
+            if(a.length == b.length){
+                console.log('Win !!') // Mostar ecra vitoria
+            }
+           
+          }
+
