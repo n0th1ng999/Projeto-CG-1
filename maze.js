@@ -9,24 +9,46 @@ const canvas = document.querySelector("#myCanvas");
         
         ctx.clearRect(0, 0, W, H); //erase Canvas
         
-
+        let noEnd = true
         
+
+        let ArrayTypeTrash = ['glass','paper','plastic']
 
 
         class Trash {
-            constructor(id,url='',type='glass'){
+            constructor(id,url='',type='glass',name='Trash'){
                 
                 this.id = id;
                 this.url = url;
                 this.type = type; 
-
+                this.name = name
+                
             }
         }
 
+        let ArrayTrash = [
+            new Trash(1,'','glass','glass bottle'),
+            new Trash(2,'','paper'),
+            new Trash(3,'','plastic','plastic bottle'),
+        ]
         
-        
+        let ArrayTrashColleted = []
+
+        let IdTrash = 1
+        /*
+        @IdTrash = lixo escolhido 
+        */
+
 
         class Contentor {
+            /**
+             * Objeto - Contentor (Recipiente de "lixo")
+             * @param {Number} x Posição X 
+             * @param {Number} y Posição Y
+             * @param {Number} r Raio
+             * @param {String} imgUrl Imagem 
+             * @param {Array} acceptedTrash 
+             */
 
             constructor(x,y,r,imgUrl='',acceptedTrash = []){
                 
@@ -36,25 +58,32 @@ const canvas = document.querySelector("#myCanvas");
                 this.imgUrl = imgUrl;
                 this.acceptedTrash = acceptedTrash;
 
-
             }
         }
 
         let ArrayContentor = [
-            new Contentor(470,550,10,'', [1])
+            new Contentor(470,400,10,'', [1,2,3]),
+            new Contentor(200,100,10,'',[1,2,3])
         ]
         class Line {
-
-            constructor(xB,yB,xE,yE){
+            /**
+             * Objeto - Linhas (Serve de Boundry para o jogador)
+             * @param {Number} xB Posição X INICIO
+             * @param {Number} yB Posição Y INICIO
+             * @param {Number} xE Posição X FIM 
+             * @param {Number} yE Posição Y FIM 
+             * @param {Number} lineWidth Espessura da linha
+             */
+            constructor(xB,yB,xE,yE,lineWidth = 3){
+                this.lineWidth = lineWidth
                 this.xB = xB
                 this.yB = yB
                 this.xE = xE
                 this.yE = yE
-
             }
 
-
             draw(ctx) {
+                ctx.lineWidth  = this.lineWidth;
                 ctx.strokeStyle = 'black'
                 ctx.beginPath();
                 ctx.moveTo(this.xB,this.yB);
@@ -63,9 +92,12 @@ const canvas = document.querySelector("#myCanvas");
             }
         }
 
-        let ArrayLines = [
-            new Line(100,150,400,150),
-            
+let ArrayLines = [                          // ARRAY DE LINHAS 
+            new Line(100,20,100,550,5),     //BORDAS
+
+
+
+            new Line(100,150,400,150),  //Linhas normais n precisas de valor de espessura
             
         ]
 
@@ -167,9 +199,7 @@ const canvas = document.querySelector("#myCanvas");
                         //erases Canvas#2
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                        ctx.strokeStyle = 'black';
-                        ctx.strokeRect(100,25 ,400,550);
-                        ctx.stroke();
+                        
 
                         ArrayLines.forEach(Line => Line.draw(ctx))
 
@@ -208,16 +238,35 @@ const canvas = document.querySelector("#myCanvas");
                         })
 
 
-                        for (const key in ArrayTrashColleted) {
-                            ctx.fillStyle  = "green";
-                           const Tx = 10 
-                           const Ty = 20 * (1 + key)
-                           ctx.beginPath();
-                           ctx.arc(Tx,Ty, 10 , 0, Math.PI * 2, true);
-                           ctx.fill();
-                                
+                        for (const i in ArrayTrash) {
                             
-                        }
+                          
+                                    const Tx = 20
+                                    const Ty = i * 30 + 30
+                                    
+                                    if(ArrayTrashColleted.some(el => el == ArrayTrash[i].id)){
+                                    ctx.fillStyle  = "green";
+                                    ctx.beginPath();
+                                    ctx.arc(Tx,Ty, 10 , 0, Math.PI * 2, true);
+                                    ctx.fill();
+                                    ctx.font = '10px sans-serif';
+                                    ctx.fillText(ArrayTrash[i].name, Tx+10,Ty);
+
+                                    }else
+                                    ctx.fillStyle  = "gray";
+                                    ctx.beginPath();
+                                    ctx.arc(Tx,Ty, 10 , 0, Math.PI * 2, true);
+                                    ctx.fill();
+                                    ctx.font = '10px sans-serif';
+                                    ctx.fillText(ArrayTrash[i].name, Tx+10,Ty);
+
+                                
+                                
+                            }
+                           
+                        
+
+
                         
 
                         CheckWin(ArrayTrash,ArrayTrashColleted)
@@ -232,8 +281,13 @@ const canvas = document.querySelector("#myCanvas");
 
 
                         //console.log(x1, x)
-                        //new frame
-                        window.requestAnimationFrame(render);
+                        //end
+                        if(noEnd){
+                            window.requestAnimationFrame(render);
+                        }else{
+                            window.requestAnimationFrame(ScreenWin);
+                        }
+
         }
 
 
@@ -258,16 +312,18 @@ const canvas = document.querySelector("#myCanvas");
 
         function CheckNoFinished(xP,yP,xC,yC,radius,Accepted,idLixo) {
 
-
             
+            
+            if(Accepted.some(el => el == idLixo))
                 if(
-                 (xP <= (xC + radius)) && (xP >= (xC - radius)   ) 
+                 (xP <= (xC + radius)) && (xP >= (xC - radius)) 
                  &&
-                 ((yP <= (yC + radius)) && (yP >= (yC - radius)) )
+                 ((yP <= (yC + radius)) && (yP >= (yC - radius)))
                  ){
                     if(ArrayTrashColleted.every(el => el != idLixo)){
                         
-                        ArrayTrashColleted.push(idLixo)       
+                        ArrayTrashColleted.push(idLixo)     
+                          
                         IdTrash++
 
                         console.log(ArrayTrashColleted)
@@ -286,22 +342,26 @@ const canvas = document.querySelector("#myCanvas");
             
         }   
         
-        let ArrayTrash = [
-            new Trash(1,'')
-        ]
         
-        let ArrayTrashColleted = []
-
-        let IdTrash = 1
-        /*
-        @IdTrash = lixo escolhido 
-        */
-
+        
+        
         function CheckWin(a, b) {
         
             if(a.length == b.length){
                 console.log('Win !!') // Mostar ecra vitoria
+                noEnd = false
             }
            
           }
 
+          function ScreenWin(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            Mensagem.style.display = 'block'
+            canvas.style.display = 'none'
+            //ERASE THE CANVAS
+
+            ArrayTrashColleted = []
+            noEnd = true
+            IdTrash = 1
+
+          }
