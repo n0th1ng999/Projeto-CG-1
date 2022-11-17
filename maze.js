@@ -109,7 +109,7 @@ let ArrayLines = [
             new Line(200,75,200,100),
             new Line(200,100,125,100),
             new Line(125,100,125,125),
-            new Line(125,125.225,125),
+            new Line(125,125,225,125),
             new Line(225,125,225,50),
             new Line(225,50,275,50),
 
@@ -510,7 +510,7 @@ let ArrayLines = [
                 ((line.yB >=  yP+R ) || (line.yB >=  yP-R ))    // Ponto Do Inicio // Horizontal
                 &&
                 ((line.yE <= yP+R) || (line.yE <= yP-R)))       // Ponto Do fim // Horizontal
-                
+
                                    )){
                     console.log('A bater')
                     return false // Retorna falso Se estiver em colisao
