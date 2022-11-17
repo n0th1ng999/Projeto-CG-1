@@ -63,7 +63,7 @@ const canvas = document.querySelector("#myCanvas");
 
         let ArrayContentor = [
             new Contentor(470,400,10,'', [1,2,3]),
-            new Contentor(200,100,10,'',[1,2,3])
+            
         ]
         class Line {
             /**
@@ -74,7 +74,7 @@ const canvas = document.querySelector("#myCanvas");
              * @param {Number} yE Posição Y FIM 
              * @param {Number} lineWidth Espessura da linha
              */
-            constructor(xB,yB,xE,yE,lineWidth = 3){
+            constructor(xB,yB,xE,yE,lineWidth = 1){
                 this.lineWidth = lineWidth
                 this.xB = xB
                 this.yB = yB
@@ -92,13 +92,15 @@ const canvas = document.querySelector("#myCanvas");
             }
         }
 
-let ArrayLines = [                          // ARRAY DE LINHAS 
-            new Line(100,25,100,575,4),
-            new Line(100,575,500,575,4),
-            new Line(500,575,500,25,4),
-            new Line(500,25,100,25,4),
+let ArrayLines = [                
+            // ARRAY DE LINHAS 
+            new Line(100,22,100,578,5),
+            new Line(100,575,500,575,5),
+            new Line(500,575,500,25,5),
+            new Line(500,25,100,25,5),
 
             new Line(100,50,150,50),
+
 
             new Line(175,50,200,50),
             new Line(200,50,200,25),
@@ -341,8 +343,8 @@ let ArrayLines = [                          // ARRAY DE LINHAS
 
         // Posicao  Inicial e Raio do player
         let x = 120;
-        let y = 50;
-        const R = 10;
+        let y = 39;
+        const R = 5;
 
 
         let rightKey = false;
@@ -440,7 +442,7 @@ let ArrayLines = [                          // ARRAY DE LINHAS
                                     const Tx = 20
                                     const Ty = i * 30 + 30
                                     
-                                    if(ArrayTrashColleted.some(el => el == ArrayTrash[i].id)){
+                                    if(ArrayTrashColleted.some(el => el == ArrayTrash[i].id)){          //LIXOS - Indicadores
                                     ctx.fillStyle  = "green";
                                     ctx.beginPath();
                                     ctx.arc(Tx,Ty, 10 , 0, Math.PI * 2, true);
@@ -489,16 +491,28 @@ let ArrayLines = [                          // ARRAY DE LINHAS
 
         function CheckNoColision(xP,yP) {
             
-            if(ArrayLines.some(line => 
-                ((line.xB <=  xP+R) || (line.xB <=  xP-R))    // Ponto Do Inicio // Veritical
+            if(ArrayLines.some(line =>                          // Ve se a posicao do Jogador x,y se encontra dentro das linhas
+            
+                (((line.xB <=  xP+R) || (line.xB <=  xP-R))     // Ponto Do Inicio // Veritical
                 &&
-                ((line.xE >= xP+R) || (line.xE >=  xP-R))    // Ponto Do fim // Vertical
+                ((line.xE >= xP+R) || (line.xE >=  xP-R))       // Ponto Do fim // Vertical
                 &&
-                ((line.yB <=  yP+R ) || (line.yB <=  yP-R ))  // Ponto Do Inicio // Horizontal
+                ((line.yB <=  yP+R ) || (line.yB <=  yP-R ))    // Ponto Do Inicio // Horizontal
                 &&
-                ((line.yE >= yP+R) || (line.yE >= yP-R))   // Ponto Do fim // Horizontal
-                )){
-                    
+                ((line.yE >= yP+R) || (line.yE >= yP-R)))       // Ponto Do fim // Horizontal
+
+                ||                                              // No sentido Invertido
+
+                (((line.xB >=  xP+R) || (line.xB >=  xP-R))     // Ponto Do Inicio // Veritical
+                &&
+                ((line.xE <= xP+R) || (line.xE <=  xP-R))       // Ponto Do fim // Vertical
+                &&
+                ((line.yB >=  yP+R ) || (line.yB >=  yP-R ))    // Ponto Do Inicio // Horizontal
+                &&
+                ((line.yE <= yP+R) || (line.yE <= yP-R)))       // Ponto Do fim // Horizontal
+                
+                                   )){
+                    console.log('A bater')
                     return false // Retorna falso Se estiver em colisao
                 }else{
                     return true // Retorna true Se nao estiver em colisao
@@ -524,9 +538,10 @@ let ArrayLines = [                          // ARRAY DE LINHAS
 
                         console.log(ArrayTrashColleted)
                         console.log(ArrayTrash)
-
+                        
+                        //Restart Position Player
                         x = 120;
-                        y = 50;
+                        y = 40;
                         
                     }
                     return true
