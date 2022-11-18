@@ -4,22 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="maze.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
     <title>Maze</title>
 </head>
 <body>
 
-
-    <button id="Start">Começar</button>
-
     <div id="contentor">
-
-       <div id="Mensagem"> 
-            Este é um joguinho blah blah blah bla 
-       </div>
-        <canvas id="myCanvas" width="600" height="600" style="border:solid 3px black">
-            Your browser does not support HTML5 Canvas.
-        </canvas>
         
+        <div id="Mensagem"> 
+            <h2>Começar</h2>
+            
+            
+                <button type="button" class="nes-btn" id="Start">Começar</button>
+       </div>
+
+        <canvas id="myCanvas" width="600" height="600" style="border:solid 3px black">
+            Your browser does not support HTML5 Canvas. 
+        </canvas>
+
+        <div id="MensagemWin">  
+            <h2>You've Won!!</h2> 
+            <h3>Play again</h3>
+            <button type="button" class="nes-btn is-warning" id="ReStart">
+
+                <img src="./Imgs/Botões/Restart.png">
+                
+            </button>
+       </div>
+
     </div>
     
     <script src="maze.js"></script>

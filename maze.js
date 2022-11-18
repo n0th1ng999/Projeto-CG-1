@@ -1,6 +1,8 @@
 const canvas = document.querySelector("#myCanvas");
         const Mensagem = document.querySelector("#Mensagem")
+        const MensagemWin = document.querySelector("#MensagemWin")
         canvas.style.display = 'none'
+        MensagemWin.style.display = 'none'
         
         const ctx = canvas.getContext("2d");
         
@@ -19,7 +21,8 @@ const canvas = document.querySelector("#myCanvas");
             constructor(id,url='',type='glass',name='Trash'){
                 
                 this.id = id;
-                this.url = url;
+                this.Img = new Image()
+                this.Img.src = url;
                 this.type = type; 
                 this.name = name
                 
@@ -27,16 +30,19 @@ const canvas = document.querySelector("#myCanvas");
         }
 
         let ArrayTrash = [
-            new Trash(1,'','glass','glass bottle'),
-            new Trash(2,'','paper'),
-            new Trash(3,'','plastic','plastic bottle'),
+            new Trash(1,'./Imgs/Lixos/Vidro Partido.png','Vidro','glass bottle'),
+            new Trash(2,'./Imgs/Lixos/Caixa Cartao 1.png','Papel'),
+            new Trash(3,'./Imgs/Lixos/Lata Sumo.png','Plástico','plastic bottle'),
         ]
         
         let ArrayTrashColleted = []
 
         let IdTrash = 1
+        let CurrentTrash = ArrayTrash.find(Trash=> Trash.id === IdTrash)
+     
         /*
-        @IdTrash = lixo escolhido 
+        @IdTrash =  Lixo escolhido
+        @CurrentTrash = Objeto escolhido  
         */
 
 
@@ -55,14 +61,17 @@ const canvas = document.querySelector("#myCanvas");
                 this.x = x;
                 this.y = y;
                 this.r = r ;
-                this.imgUrl = imgUrl;
+                this.Img = new Image()
+                this.Img.src = imgUrl;
                 this.acceptedTrash = acceptedTrash;
 
             }
         }
 
         let ArrayContentor = [
-            new Contentor(470,400,10,'', [1,2,3]),
+            new Contentor(185,87,20,'./Imgs/Contentores/Vidro.png',[1]),
+            new Contentor(487,390,20,'./Imgs/Contentores/Papel.png', [2]),
+            new Contentor(210,200,20,'./Imgs/Contentores/Plástico.png',[3]),
             
         ]
         class Line {
@@ -314,14 +323,10 @@ let ArrayLines = [
 
         }
 
-
-        
-
-
-        
         function start() {
             
             Mensagem.style.display = 'none'
+            MensagemWin.style.display = 'none'
             canvas.style.display = 'block'
             //ERASE THE CANVAS
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
@@ -338,13 +343,18 @@ let ArrayLines = [
 
             })
 
+            const ReStart = document.querySelector("#ReStart")
+            
+            ReStart.addEventListener("click", () => {
 
+                start()
 
+            })
 
         // Posicao  Inicial e Raio do player
         let x = 120;
         let y = 39;
-        const R = 5;
+        const R = 10;
 
 
         let rightKey = false;
@@ -360,14 +370,10 @@ let ArrayLines = [
             if (e.key == 'ArrowUp')
                 upKey = false; //Canvas#2
             if (e.key == 'ArrowDown')
-                downKey = false; //Canvas#2
-
-
-                
+                downKey = false; //Canvas#2     
         }
 
         function ArrowPressed(e) {
-            
             
             if (e.key == 'ArrowRight') {
                 rightKey = true; //Canvas#2
@@ -421,16 +427,11 @@ let ArrayLines = [
                             if(CheckNoColision(x, y + 1)){
                                 y+=1; //UPDATE BALL
                             }
-                        
-                       
-                        
-                        
+                                 
                         ArrayContentor.forEach(Contentor =>{
-
-                            ctx.fillStyle  = "red";
-                            ctx.beginPath();
-                            ctx.arc(Contentor.x, Contentor.y, Contentor.r , 0, Math.PI * 2, true);
-                            ctx.fill();
+                            
+                           
+                            ctx.drawImage(Contentor.Img,Contentor.x-Contentor.r/2, Contentor.y-Contentor.r/2,Contentor.r,Contentor.r)
                             CheckNoFinished(x,y,Contentor.x,Contentor.y,Contentor.r,Contentor.acceptedTrash,IdTrash)
                             
                         })
@@ -439,48 +440,31 @@ let ArrayLines = [
                         for (const i in ArrayTrash) {
                             
                           
-                                    const Tx = 20
-                                    const Ty = i * 30 + 30
+                                    const Tx = 40
+                                    const Ty = i * 60 + 40
                                     
                                     if(ArrayTrashColleted.some(el => el == ArrayTrash[i].id)){          //LIXOS - Indicadores
-                                    ctx.fillStyle  = "green";
-                                    ctx.beginPath();
-                                    ctx.arc(Tx,Ty, 10 , 0, Math.PI * 2, true);
-                                    ctx.fill();
-                                    ctx.font = '10px sans-serif';
-                                    ctx.fillText(ArrayTrash[i].name, Tx+10,Ty);
+                                        
+                                        
+                                        ctx.drawImage(ArrayTrash[i].Img,Tx-15,Ty-15,30,30)
 
-                                    }else
-                                    ctx.fillStyle  = "gray";
-                                    ctx.beginPath();
-                                    ctx.arc(Tx,Ty, 10 , 0, Math.PI * 2, true);
-                                    ctx.fill();
-                                    ctx.font = '10px sans-serif';
-                                    ctx.fillText(ArrayTrash[i].name, Tx+10,Ty);
-
-                                
-                                
-                            }
+                                    }else{
+                                        ctx.fillStyle  = "#ffffff95";
+                                        
+                                        ctx.drawImage(ArrayTrash[i].Img,Tx-15,Ty-15,30,30)
+                                        ctx.beginPath();
+                                        ctx.arc(Tx,Ty, 20 , 0, Math.PI * 2, true);
+                                        ctx.fill();
+                                    }
+                                    }
                            
-                        
-
-
-                        
-
                         CheckWin(ArrayTrash,ArrayTrashColleted)
-                
-                            //Player Falta substituir arc por idTrash url 
-                            ctx.fillStyle  = "black";
-                            ctx.beginPath();
-                            ctx.arc(x, y, R, 0, Math.PI * 2, true);
-                            ctx.fill();
-
-
-
-
+                        
+                        
                         //console.log(x1, x)
                         //end
                         if(noEnd){
+                            ctx.drawImage(CurrentTrash.Img,x-10,y-10,R+10,R+10)
                             window.requestAnimationFrame(render);
                         }else{
                             window.requestAnimationFrame(ScreenWin);
@@ -512,7 +496,6 @@ let ArrayLines = [
                 ((line.yE <= yP+R) || (line.yE <= yP-R)))       // Ponto Do fim // Horizontal
 
                                    )){
-                    console.log('A bater')
                     return false // Retorna falso Se estiver em colisao
                 }else{
                     return true // Retorna true Se nao estiver em colisao
@@ -535,6 +518,7 @@ let ArrayLines = [
                         ArrayTrashColleted.push(idLixo)     
                           
                         IdTrash++
+                        CurrentTrash = ArrayTrash.find(Trash=> Trash.id === IdTrash)
 
                         console.log(ArrayTrashColleted)
                         console.log(ArrayTrash)
@@ -567,12 +551,13 @@ let ArrayLines = [
 
           function ScreenWin(){
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
-            Mensagem.style.display = 'block'
+            MensagemWin.style.display = 'block'
             canvas.style.display = 'none'
             //ERASE THE CANVAS
 
             ArrayTrashColleted = []
             noEnd = true
             IdTrash = 1
+            CurrentTrash = ArrayTrash.find(Trash=> Trash.id === IdTrash)
 
           }
