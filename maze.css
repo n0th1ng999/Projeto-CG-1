@@ -26,21 +26,34 @@
 }
 
 
-#ReStart + img{
-    width: 100px;
+#ReStart {
+    background-color: transparent;
+    position: absolute;
+    left: 645px;
+    top: 425px;
 }
 
-#ReStart img{
-
-    width: 40px;
-    height: 40px;
-
-}
-
-#ReStart:hover img{
+#ReStart:hover {
     transform-origin: 50% 50%;
     animation: Rotate  2s  linear infinite reverse;
 }
+
+
+#jump {
+    animation: MoveUpDown 1s linear infinite;
+    position: absolute;
+    left: 270px;
+    bottom: 25px;
+  }
+  
+  @keyframes MoveUpDown {
+    0%, 100% {
+      bottom: 10;
+    }
+    50% {
+      bottom: 75px;
+    }
+  }
 
 
 html {
