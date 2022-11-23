@@ -39,8 +39,8 @@
     max-height: 50vh;
     animation: MoveUpDown 1s linear infinite;
     position: fixed;
-    left: 20vw;
-    bottom: 20vh;
+    left: 5vw;
+    bottom: 5vh;
     pointer-events: none;
   }
   
@@ -122,6 +122,6 @@ div{
   background-image: url('./Imgs/Fundo/end.jpg')
 }
 
-.Maze{
-  background-image: url('./Imgs/Fundo/mazeback.jpg')
+.FundoMaze{
+  background-image: url('./Imgs/Fundo/end.jpg')
 }
