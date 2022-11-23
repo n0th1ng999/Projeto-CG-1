@@ -85,7 +85,7 @@ div{
 .Botao {
   height: 10vh;
   border: 0;
-  
+  outline: none;
 }
 
 .Botao img{
@@ -106,7 +106,7 @@ div{
 
 .Botao:active {
   border: 0;
-  
+  outline: none;
 }
 
 
