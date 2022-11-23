@@ -1,9 +1,10 @@
 const canvas = document.querySelector("#myCanvas");
+        const CanvasFundo = document.querySelector("#CanvasFundo")
         const Mensagem = document.querySelector("#Mensagem")
         const MensagemRegras = document.querySelector("#MensagemRegras")
         const MensagemWin = document.querySelector("#MensagemWin")
         
-        canvas.style.display = 'none'
+        CanvasFundo.style.display = 'none'
         MensagemWin.style.display = 'none'
         MensagemRegras.style.display ='none'
         
@@ -341,7 +342,7 @@ let ArrayLines = [
             Mensagem.style.display = 'none'
             MensagemRegras.style.display = 'none'
             MensagemWin.style.display = 'none'
-            canvas.style.display = 'grid'
+            CanvasFundo.style.display = 'grid'
             //ERASE THE CANVAS
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
@@ -572,7 +573,7 @@ let ArrayLines = [
           function ScreenWin(){
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
             MensagemWin.style.display = 'flex'
-            canvas.style.display = 'none'
+            CanvasFundo.style.display = 'none'
             //ERASE THE CANVAS
 
             ArrayTrashColleted = []
@@ -588,7 +589,7 @@ let ArrayLines = [
         MensagemRegras.style.display = 'flex'
         Mensagem.style.display='none' // <--- FALTAVA TE ISTO 
         MensagemWin.style.display = 'none'
-        canvas.style.display = 'none'
+        CanvasFundo.style.display = 'none'
 
         }
 
@@ -605,7 +606,7 @@ let ArrayLines = [
             Mensagem.style.display = 'flex'
             MensagemRegras.style.display='none'
             MensagemWin.style.display = 'none'
-            canvas.style.display = 'none'
+            CanvasFundo.style.display = 'none'
     
             }
 
