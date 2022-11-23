@@ -21,8 +21,8 @@ const canvas = document.querySelector("#myCanvas");
         let mazepng = new Image();
         mazepng.src = './Imgs/Labirinto/maze.png';
 
-        let mazeback = new Image();
-        mazeback.src = './Imgs/Labirinto/mazeback.jpg';
+        let white = new Image();
+        white.src = './Imgs/Labirinto/white.png';
 
         let ArrayTypeTrash = ['glass','paper','plastic']
 
@@ -422,7 +422,7 @@ let ArrayLines = [
                         //erases Canvas#2
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
                         //imagens aqui
-                        ctx.drawImage(mazeback,0,0, 600,600);
+                        ctx.drawImage(white,0,0,600,600);
                         ctx.drawImage(mazepng,93,18);
                         
 
