@@ -4,6 +4,27 @@
 
 }
 
+#Start {
+    background-color: transparent;
+    position: absolute;
+    left: 505px;
+    top: 307px;
+}
+
+#Regras {
+    background-color: transparent;
+    position: absolute;
+    left: 670px;
+    top: 307px;
+}
+
+#Home {
+    background-color: transparent;
+    position: absolute;
+    left: 670px;
+    top: 307px;
+}
+
 
 #ReStart + img{
     width: 100px;

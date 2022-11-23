@@ -1,5 +1,6 @@
 const canvas = document.querySelector("#myCanvas");
         const Mensagem = document.querySelector("#Mensagem")
+        const MensagemRegras = document.querySelector("#MensagemRegras")
         const MensagemWin = document.querySelector("#MensagemWin")
         canvas.style.display = 'none'
         MensagemWin.style.display = 'none'
@@ -326,6 +327,7 @@ let ArrayLines = [
         function start() {
             
             Mensagem.style.display = 'none'
+            MensagemRegras.style.display = 'none'
             MensagemWin.style.display = 'none'
             canvas.style.display = 'block'
             //ERASE THE CANVAS
@@ -350,6 +352,10 @@ let ArrayLines = [
                 start()
 
             })
+
+        function regras() {
+            MensagemRegras.style.display
+        }
 
         // Posicao  Inicial e Raio do player
         let x = 120;
@@ -561,3 +567,19 @@ let ArrayLines = [
             CurrentTrash = ArrayTrash.find(Trash=> Trash.id === IdTrash)
 
           }
+
+          
+        function ScreenRegras(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height); 
+        MensagemRegras.style.display = 'block'
+        canvas.style.display = 'none'
+
+        }
+
+        const Regras = document.querySelector("#Regras")
+        
+        Regras.addEventListener("click", () => {
+
+            ScreenRegras()
+
+        })
