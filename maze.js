@@ -587,3 +587,19 @@ let ArrayLines = [
             ScreenRegras()
 
         })
+
+        function ScreenHome(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            Mensagem.style.display = 'block'
+            MensagemRegras.style.display='none'
+            MensagemWin.style.display = 'none'
+            canvas.style.display = 'none'
+    
+            }
+
+        const Home = document.querySelector('#Home')
+
+        Home.addEventListener('click', () => {
+
+            ScreenHome()
+        })
