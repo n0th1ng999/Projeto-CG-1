@@ -13,27 +13,37 @@
 
     <div id="contentor">
         
-        <div id="Mensagem"> 
-                <img src="./Imgs/Fundo/background.jpg" width="100%" , height="auto">
-            
-                <input type="image" id="Start" src="./Imgs/Botões/jogar.png"/ width="160px">
-                <input type="image" id="Regras" src="./Imgs/Botões/regras.png"/ width="160px">
+        <div id="Mensagem" class="ImagemFundo Background"> 
+      
+                <button class="Botao" id="Start" >
+                    <img src="./Imgs/Botões/jogar.png" alt="Começar">
+                </button>
+                <button class="Botao" id="Regras" >
+                    <img src="./Imgs/Botões/regras.png" alt="Regras">
+                </div>
 
        </div>
 
-       <div id="MensagemRegras">
-                <img src="./Imgs/Fundo/regras.jpg" width="100%" , height="auto">
-                <input type="image" id="Home" src="./Imgs/Botões/home.png" width="65px">
+       <div id="MensagemRegras" class="ImagemFundo Regras">
+                
+            <button class="Botao" id="Home" >
+                <img src="./Imgs/Botões/home.png" alt="Home">
+            </button>
+      
        </div>
 
         <canvas id="myCanvas" width="600" height="600" style="border:solid 3px black">
             Your browser does not support HTML5 Canvas. 
         </canvas>
 
-        <div id="MensagemWin">  
-            <img src="./Imgs/Fundo/end.jpg" width="100%" , height="auto">
-            <input type="image" id="ReStart" src="./Imgs/Botões/again.png" width="65px">
-            <img id='jump' src="./Imgs/Menina/girl.png" width="200px">
+        <div id="MensagemWin" class="ImagemFundo End">  
+            
+            <button class="Botao" id="ReStart" >
+                <img src="./Imgs/Botões/again.png" alt="Home" >
+            </button>
+
+
+            <img id='jump' src="./Imgs/Menina/girl.png" >
 
        </div>
 

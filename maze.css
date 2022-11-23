@@ -6,31 +6,26 @@
 
 #Start {
     background-color: transparent;
-    position: absolute;
-    left: 505px;
-    top: 307px;
+   
 }
 
 #Regras {
     background-color: transparent;
-    position: absolute;
-    left: 670px;
-    top: 307px;
+   
+    
 }
 
 #Home {
     background-color: transparent;
-    position: absolute;
-    left: 660px;
-    top: 430px;
+    
+   
 }
 
 
 #ReStart {
     background-color: transparent;
-    position: absolute;
-    left: 645px;
-    top: 425px;
+    
+    
 }
 
 #ReStart:hover {
@@ -40,18 +35,21 @@
 
 
 #jump {
+    max-width: 40vw;
+    max-height: 50vh;
     animation: MoveUpDown 1s linear infinite;
-    position: absolute;
-    left: 270px;
-    bottom: 25px;
+    position: fixed;
+    left: 5vw;
+    bottom: 5vh;
+    pointer-events: none;
   }
   
   @keyframes MoveUpDown {
     0%, 100% {
-      bottom: 10;
+      bottom: 5vh;
     }
     50% {
-      bottom: 75px;
+      bottom: 12vh;
     }
   }
 
@@ -70,4 +68,56 @@ div{
     display: flex;
     flex-direction: column;
     justify-items: center;
+}
+
+.ImagemFundo{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;   
+  background-position: center;
+
+}
+
+.Botao {
+  height: 10vh;
+  border: 0;
+  
+}
+
+.Botao img{
+  height: 7vh;
+}
+
+#Home{
+  top: 15%;
+  left: 1%;
+  position: relative;
+  height: 60px;
+}
+
+#ReStart{
+  top:20%;
+  position: relative;
+}
+
+.Botao:active {
+  border: 0;
+  
+}
+
+
+.Background{
+  background-image: url('./Imgs/Fundo/background.jpg')
+}
+
+.Regras{
+  background-image: url('./Imgs/Fundo/regras.jpg')
+}
+
+.End{
+  background-image: url('./Imgs/Fundo/end.jpg')
 }

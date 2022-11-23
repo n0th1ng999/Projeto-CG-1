@@ -39,9 +39,9 @@ const canvas = document.querySelector("#myCanvas");
         }
 
         let ArrayTrash = [
-            new Trash(1,'./Imgs/Lixos/Vidro Partido.png','Vidro','glass bottle'),
-            new Trash(2,'./Imgs/Lixos/Caixa Cartao 1.png','Papel'),
-            new Trash(3,'./Imgs/Lixos/Lata Sumo.png','Plástico','plastic bottle'),
+            //new Trash(1,'./Imgs/Lixos/Vidro Partido.png','Vidro','glass bottle'),
+            //new Trash(2,'./Imgs/Lixos/Caixa Cartao 1.png','Papel'),
+            //new Trash(3,'./Imgs/Lixos/Lata Sumo.png','Plástico','plastic bottle'),
         ]
         
         let ArrayTrashColleted = []
@@ -341,7 +341,7 @@ let ArrayLines = [
             Mensagem.style.display = 'none'
             MensagemRegras.style.display = 'none'
             MensagemWin.style.display = 'none'
-            canvas.style.display = 'block'
+            canvas.style.display = 'grid'
             //ERASE THE CANVAS
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
@@ -425,7 +425,7 @@ let ArrayLines = [
                         ctx.drawImage(mazepng,93,18);
                         
 
-                        ArrayLines.forEach(Line => Line.draw(ctx))
+                        //ArrayLines.forEach(Line => Line.draw(ctx))
 
                         //draw on Canvas#2
                         if (rightKey)
@@ -571,7 +571,7 @@ let ArrayLines = [
 
           function ScreenWin(){
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
-            MensagemWin.style.display = 'block'
+            MensagemWin.style.display = 'flex'
             canvas.style.display = 'none'
             //ERASE THE CANVAS
 
@@ -585,7 +585,7 @@ let ArrayLines = [
           
         function ScreenRegras(){
         ctx.clearRect(0, 0, canvas.width, canvas.height); 
-        MensagemRegras.style.display = 'block'
+        MensagemRegras.style.display = 'flex'
         Mensagem.style.display='none' // <--- FALTAVA TE ISTO 
         MensagemWin.style.display = 'none'
         canvas.style.display = 'none'
@@ -602,7 +602,7 @@ let ArrayLines = [
 
         function ScreenHome(){
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
-            Mensagem.style.display = 'block'
+            Mensagem.style.display = 'flex'
             MensagemRegras.style.display='none'
             MensagemWin.style.display = 'none'
             canvas.style.display = 'none'
