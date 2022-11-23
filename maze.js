@@ -2,8 +2,10 @@ const canvas = document.querySelector("#myCanvas");
         const Mensagem = document.querySelector("#Mensagem")
         const MensagemRegras = document.querySelector("#MensagemRegras")
         const MensagemWin = document.querySelector("#MensagemWin")
+        
         canvas.style.display = 'none'
         MensagemWin.style.display = 'none'
+        MensagemRegras.style.display ='none'
         
         const ctx = canvas.getContext("2d");
         
@@ -572,6 +574,8 @@ let ArrayLines = [
         function ScreenRegras(){
         ctx.clearRect(0, 0, canvas.width, canvas.height); 
         MensagemRegras.style.display = 'block'
+        Mensagem.style.display='none' // <--- FALTAVA TE ISTO 
+        MensagemWin.style.display = 'none'
         canvas.style.display = 'none'
 
         }
