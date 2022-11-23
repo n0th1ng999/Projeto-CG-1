@@ -16,6 +16,12 @@ const canvas = document.querySelector("#myCanvas");
         
         let noEnd = true
         
+        //imagem maze
+        let mazepng = new Image();
+        mazepng.src = './Imgs/Labirinto/maze.png';
+
+        let mazeback = new Image();
+        mazeback.src = './Imgs/Labirinto/mazeback.png';
 
         let ArrayTypeTrash = ['glass','paper','plastic']
 
@@ -106,7 +112,7 @@ const canvas = document.querySelector("#myCanvas");
 
 let ArrayLines = [                
             // ARRAY DE LINHAS 
-            new Line(100,22,100,578,5),
+            new Line(100,25,100,575,5),
             new Line(100,575,500,575,5),
             new Line(500,575,500,25,5),
             new Line(500,25,100,25,5),
@@ -309,6 +315,10 @@ let ArrayLines = [
             new Line(200,425,200,450),
             new Line(200,450,250,450),
 
+            new Line(300,525,325,525),
+
+            new Line(350,400,375,400,)
+
             ]
 
         
@@ -410,7 +420,9 @@ let ArrayLines = [
         function render() {
                         //erases Canvas#2
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+                        //imagens aqui
+                        ctx.drawImage(mazeback,0,0, 600,600);
+                        ctx.drawImage(mazepng,93,18);
                         
 
                         ArrayLines.forEach(Line => Line.draw(ctx))
