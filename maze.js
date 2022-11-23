@@ -22,7 +22,7 @@ const canvas = document.querySelector("#myCanvas");
         mazepng.src = './Imgs/Labirinto/maze.png';
 
         let mazeback = new Image();
-        mazeback.src = './Imgs/Labirinto/mazeback.png';
+        mazeback.src = './Imgs/Labirinto/mazeback.jpg';
 
         let ArrayTypeTrash = ['glass','paper','plastic']
 
