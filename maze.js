@@ -4,6 +4,7 @@ const canvas = document.querySelector("#myCanvas");
         const MensagemRegras = document.querySelector("#MensagemRegras")
         const MensagemWin = document.querySelector("#MensagemWin")
         const Music = document.querySelector('#Music')
+        const MensagemLabirinto = document.querySelector('#MensagemLabirinto')
         
         CanvasFundo.style.display = 'none'
         MensagemWin.style.display = 'none'
@@ -79,6 +80,9 @@ const canvas = document.querySelector("#myCanvas");
 
             }
         }
+
+
+
 
         let ArrayContentor = [
             new Contentor(185,87,20,'./Imgs/Contentores/Vidro.png',[1]),
@@ -543,9 +547,12 @@ let ArrayLines = [
                         IdTrash++
                         CurrentTrash = ArrayTrash.find(Trash=> Trash.id === IdTrash)
 
-                        console.log(ArrayTrashColleted)
-                        console.log(ArrayTrash)
+                        //console.log(ArrayTrashColleted)
+                        //console.log(ArrayTrash)
                         
+                        //AQUI é o momento depois de um lixo entrar 
+                        MensagemLabirinto.innerHTML = "Muito Bem!! Faltam te apenas " + (ArrayTrash.length-ArrayTrashColleted.length) +" Lixos"
+
                         //Restart Position Player
                         x = 120;
                         y = 40;
@@ -560,7 +567,9 @@ let ArrayLines = [
             
         }   
         
-        
+        canvas.addEventListener('click',()=>{
+            
+        })
         
         
         function CheckWin(a, b) {
