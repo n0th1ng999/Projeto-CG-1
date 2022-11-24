@@ -6,11 +6,13 @@ const canvas = document.querySelector("#myCanvas");
         const Music = document.querySelector('#Music')
         const MensagemLabirinto = document.querySelector('#MensagemLabirinto')
         const Menino = document.querySelector('#Menino')
+        const confi = document.querySelector('#confi')
 
         CanvasFundo.style.display = 'none'
         MensagemWin.style.display = 'none'
         MensagemRegras.style.display ='none'
         Music.style.display ='flex'
+        confi.style.display='none'
         
         const ctx = canvas.getContext("2d");
         
@@ -562,7 +564,12 @@ let ArrayLines = [
                             Menino.style.animation = 'none'
                         },1000)
 
-                        
+                        confi.style.animation = "confetti 3s"
+
+                        setTimeout(() => {   
+                            confi.style.animation = 'none'
+                        },1000)
+
                         //Restart Position Player
                         x = 120;
                         y = 40;
