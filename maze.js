@@ -3,10 +3,12 @@ const canvas = document.querySelector("#myCanvas");
         const Mensagem = document.querySelector("#Mensagem")
         const MensagemRegras = document.querySelector("#MensagemRegras")
         const MensagemWin = document.querySelector("#MensagemWin")
+        const Music = document.querySelector('#Music')
         
         CanvasFundo.style.display = 'none'
         MensagemWin.style.display = 'none'
         MensagemRegras.style.display ='none'
+        Music.style.display ='flex'
         
         const ctx = canvas.getContext("2d");
         
@@ -40,9 +42,9 @@ const canvas = document.querySelector("#myCanvas");
         }
 
        let ArrayTrash = [
-            new Trash(1,'./Imgs/Lixos/Vidro Partido.png','Vidro','glass bottle'),
-            new Trash(2,'./Imgs/Lixos/Caixa Cartao 1.png','Papel'),
-            new Trash(3,'./Imgs/Lixos/Lata Sumo.png','Plástico','plastic bottle'),
+            //new Trash(1,'./Imgs/Lixos/Vidro Partido.png','Vidro','glass bottle'),
+            //new Trash(2,'./Imgs/Lixos/Caixa Cartao 1.png','Papel'),
+            //new Trash(3,'./Imgs/Lixos/Lata Sumo.png','Plástico','plastic bottle'),
         ]
         
         let ArrayTrashColleted = []
@@ -573,6 +575,7 @@ let ArrayLines = [
           function ScreenWin(){
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
             MensagemWin.style.display = 'flex'
+
             CanvasFundo.style.display = 'none'
             //ERASE THE CANVAS
 
@@ -616,3 +619,22 @@ let ArrayLines = [
 
             ScreenHome()
         })
+
+        //music
+        let cont = 0
+
+        function play(){
+            if(cont == 0) {
+                cont = 1
+                const audio = document.querySelector("#music")
+                audio.volume = 0.05
+                audio.play()
+                document.getElementById("pause").src="./Imgs/Botões/off.png" 
+            } else {
+                cont = 0
+                const audio = document.querySelector("#music")
+                audio.currentTime = 0
+                audio.pause()
+                document.getElementById("pause").src="./Imgs/Botões/on.png" 
+            }
+        }

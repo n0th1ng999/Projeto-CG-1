@@ -15,10 +15,10 @@
         
         <div id="Mensagem" class="ImagemFundo Background"> 
       
-                <button class="Botao" id="Start" >
+                <button class="Botao BotaoHome" id="Start" >
                     <img src="./Imgs/Botões/jogar.png" alt="Começar">
                 </button>
-                <button class="Botao" id="Regras" >
+                <button class="Botao BotaoHome" id="Regras" >
                     <img src="./Imgs/Botões/regras.png" alt="Regras">
                 </div>
 
@@ -35,7 +35,7 @@
 
        <div id="CanvasFundo" class="ImagemFundo FundoMaze">
 
-        <canvas id="myCanvas" width="600" height="600" style="border:solid 3px black">
+        <canvas id="myCanvas" width="600" height="600" >
             Your browser does not support HTML5 Canvas. 
         </canvas>
 
@@ -53,6 +53,15 @@
             <img id='jump' src="./Imgs/Menina/girl.png" >
 
        </div>
+
+       <div id='Music' class="Musica">
+            <audio id="music">
+                <source src="./Music/Kid's Game — Children's Music (Instrumental Music For Kids) (320 kbps).mp3">
+            </audio>
+            <button id="PlayMusic" onclick="play()" class="Botao"> 
+                <img src="./Imgs/Botões/on.png" id="pause"> 
+            </button>
+        </div>
 
     </div>
     

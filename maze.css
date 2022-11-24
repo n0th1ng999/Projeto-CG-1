@@ -5,34 +5,27 @@
 }
 
 #Start {
-    background-color: transparent;
-   
+    background-color: transparent;  
 }
 
 #Regras {
     background-color: transparent;
-   
-    
 }
 
 #Home {
     background-color: transparent;
-    
-   
 }
 
 
 #ReStart {
-    background-color: transparent;
-    
-    
+    background-color: transparent; 
 }
 
 #ReStart:hover {
+    transform: none;
     transform-origin: 50% 50%;
     animation: Rotate  2s  linear infinite;
 }
-
 
 #jump {
     max-width: 40vw;
@@ -83,20 +76,29 @@ div{
 }
 
 .Botao {
+  transition: all 0.2s ease-out;
   height: 10vh;
   border: 0;
   outline: none;
 }
 
 .Botao img{
-  height: 7vh;
+  height: 8vh;
 }
 
 #Home{
-  top: 15%;
+  top: 20%;
   left: 1%;
   position: relative;
   height: 60px;
+}
+
+#PlayMusic{
+  position: absolute;
+  top:2%;
+  left:1%;
+  background: transparent;
+  outline:0;
 }
 
 #ReStart{
@@ -108,7 +110,6 @@ div{
   border: 0;
   outline: none;
 }
-
 
 .Background{
   background-image: url('./Imgs/Fundo/background.jpg')
@@ -124,4 +125,14 @@ div{
 
 .FundoMaze{
   background-image: url('./Imgs/Fundo/mazeback.jpg')
+}
+
+.BotaoHome{
+  position: relative;
+  bottom: 0.5vh;
+  right: 1vh;
+}
+
+.Botao:hover{
+  transform: scale(1.1)
 }
