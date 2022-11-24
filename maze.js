@@ -42,9 +42,9 @@ const canvas = document.querySelector("#myCanvas");
         }
 
        let ArrayTrash = [
-            //new Trash(1,'./Imgs/Lixos/Vidro Partido.png','Vidro','glass bottle'),
-            //new Trash(2,'./Imgs/Lixos/Caixa Cartao 1.png','Papel'),
-            //new Trash(3,'./Imgs/Lixos/Lata Sumo.png','Plástico','plastic bottle'),
+            new Trash(1,'./Imgs/Lixos/Vidro Partido.png','Vidro','glass bottle'),
+            new Trash(2,'./Imgs/Lixos/Caixa Cartao 1.png','Papel'),
+            new Trash(3,'./Imgs/Lixos/Lata Sumo.png','Plástico','plastic bottle'),
         ]
         
         let ArrayTrashColleted = []

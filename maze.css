@@ -4,6 +4,11 @@
 
 }
 
+@font-face{ 
+    font-family: KidGame;
+    src: url(./Letra/Kid\ Games.ttf);
+}
+
 #Start {
     background-color: transparent;  
 }
