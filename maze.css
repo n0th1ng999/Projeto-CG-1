@@ -6,7 +6,13 @@
 
 @font-face{ 
     font-family: KidGame;
+    
     src: url(./Letra/Kid\ Games.ttf);
+}
+
+#MensagemLabirinto{
+  font-family: Kidgame;
+  font-size: 12px;
 }
 
 #Start {
@@ -38,16 +44,25 @@
     animation: MoveUpDown 1s linear infinite;
     position: fixed;
     left: 20vw;
-    bottom: 10vh;
+    bottom: 24vh;
     pointer-events: none;
   }
   
   @keyframes MoveUpDown {
     0%, 100% {
-      bottom: 5vh;
+      transform: translate(0);
     }
     50% {
-      bottom: 12vh;
+      transform: translate(0,12vh);
+    }
+  }
+
+  @keyframes MoveUpDownMenino {
+    0%, 100% {
+      transform: translate(0);
+    }
+    50% {
+      transform: translate(0,-12vh);
     }
   }
 
@@ -132,6 +147,15 @@ div{
   background-image: url('./Imgs/Fundo/mazeback.jpg')
 }
 
+#Menino{
+  position: fixed;
+  bottom: -5vh;
+  right: -5vw;
+  max-width: 40vw;
+  max-height: 60vh;
+  object-fit: contain;
+}
+
 .BotaoHome{
   position: relative;
   bottom: 0.5vh;
@@ -140,4 +164,20 @@ div{
 
 .Botao:hover{
   transform: scale(1.1)
+}
+
+#MensagemLabirinto{
+  position: fixed;
+  display: grid;
+  place-items: center;
+  text-align:center;
+  z-index: 1;
+  bottom: 60vh;
+  right: 5vw;
+  
+ 
+}
+
+#MensagemLabirinto img{
+  width: 14vw;
 }

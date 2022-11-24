@@ -5,7 +5,8 @@ const canvas = document.querySelector("#myCanvas");
         const MensagemWin = document.querySelector("#MensagemWin")
         const Music = document.querySelector('#Music')
         const MensagemLabirinto = document.querySelector('#MensagemLabirinto')
-        
+        const Menino = document.querySelector('#Menino')
+
         CanvasFundo.style.display = 'none'
         MensagemWin.style.display = 'none'
         MensagemRegras.style.display ='none'
@@ -87,7 +88,7 @@ const canvas = document.querySelector("#myCanvas");
         let ArrayContentor = [
             new Contentor(185,87,20,'./Imgs/Contentores/Vidro.png',[1]),
             new Contentor(487,390,20,'./Imgs/Contentores/Papel.png', [2]),
-            new Contentor(210,200,20,'./Imgs/Contentores/Plástico.png',[3]),
+            new Contentor(110,562,20,'./Imgs/Contentores/Plástico.png',[3]),
             
         ]
         class Line {
@@ -551,8 +552,17 @@ let ArrayLines = [
                         //console.log(ArrayTrash)
                         
                         //AQUI é o momento depois de um lixo entrar 
-                        MensagemLabirinto.innerHTML = "Muito Bem!! Faltam te apenas " + (ArrayTrash.length-ArrayTrashColleted.length) +" Lixos"
+                        MensagemLabirinto.innerHTML = `            
+                        <p style="position: absolute;" >MUITO BEM! <br> FALTAM ${ArrayTrash.length - ArrayTrashColleted.length} LIXOS PRA ACABARES!</p>
+                        <img src="./Imgs/Labirinto/balao.png" />`
+                        
+                        Menino.style.animation = "MoveUpDownMenino 1s linear infinite"
+                        
+                        setTimeout(() => {   
+                            Menino.style.animation = 'none'
+                        },1000)
 
+                        
                         //Restart Position Player
                         x = 120;
                         y = 40;
