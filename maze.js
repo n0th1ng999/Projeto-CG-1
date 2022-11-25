@@ -12,7 +12,6 @@ const canvas = document.querySelector("#myCanvas");
         MensagemWin.style.display = 'none'
         MensagemRegras.style.display ='none'
         Music.style.display ='flex'
-        confi.style.display='none'
         
         const ctx = canvas.getContext("2d");
         
@@ -562,12 +561,6 @@ let ArrayLines = [
                         
                         setTimeout(() => {   
                             Menino.style.animation = 'none'
-                        },1000)
-
-                        confi.style.animation = "confetti 3s"
-
-                        setTimeout(() => {   
-                            confi.style.animation = 'none'
                         },1000)
 
                         //Restart Position Player
